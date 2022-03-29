@@ -1,0 +1,8 @@
+def calculates(n):
+    if n == 0:
+        return 1
+    else:
+        return n*(calculates(n-1))
+
+
+print(calculates(4))
