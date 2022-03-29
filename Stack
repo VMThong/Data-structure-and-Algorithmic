@@ -1,0 +1,171 @@
+# Mảng đơn giản
+
+class Stack(object):
+
+    def __init__(self,limit=10):
+        self.stk=[]
+        self.limit=limit
+
+    def isEmpty(self):
+        return len(self.stk)<=0
+
+    def push(self,item):
+        if len(self.stk)>=self.limit:
+            print('Stack Overflow')
+        else:
+            self.stk.append(item)
+
+        print('Stack after Push {}' .format(self.stk))
+
+    def pop(self):
+        if len(self.stk)<=0:
+            print('Stack Overflow')
+            return 0
+        else:
+            return self.stk.pop()
+
+    def peek(self):
+        if len(self.stk)<=0:
+            print('Stack Overflow')
+            return 0
+        else:
+            return self.stk[-1]
+
+    def size(self):
+        return len(self.stk)
+
+our_stack=Stack(5)
+our_stack.push('1')
+our_stack.push('21')
+our_stack.push('14')
+our_stack.push('31')
+our_stack.push('19')
+our_stack.push('3')
+our_stack.push('99')
+our_stack.push('9')
+
+print(our_stack.peek())
+print(our_stack.pop())
+print(our_stack.peek())
+print(our_stack.pop())
+
+# Mảng động
+class Stack(object):
+    def __init__(self,limit=10):
+        self.stk=limit*[]
+        self.limit=limit
+
+    def isEmpty(self):
+        return len(self.stk)<=0
+
+    def push(self,item):
+        if len(self.stk)>=self.limit:
+            self.resize()
+
+        self.stk.append(item)
+        print('Stack after Push {}' .format(self.stk))
+
+    def pop(self):
+        if len(self.stk)<=0:
+            print('Stack Overflow')
+            return 0
+        else:
+            return self.stk.pop()
+
+    def peek(self):
+        if len(self.stk)<=0:
+            print('Stack Overflow')
+            return 0
+        else:
+            return self.stk[-1]
+
+    def size(self):
+        return len(self.stk)
+
+    def resize(self):
+        newStk=list(self.stk)
+        self.limit=2*self.limit
+        self.stk=newStk
+
+our_stack=Stack(5)
+
+our_stack.push('1')
+our_stack.push('21')
+our_stack.push('14')
+our_stack.push('31')
+our_stack.push('19')
+our_stack.push('3')
+our_stack.push('99')
+our_stack.push('9')
+
+print(our_stack.peek())
+print(our_stack.pop())
+print(our_stack.peek())
+print(our_stack.pop())
+
+
+# Mảng linked list
+class Node:
+
+    def __init__(self):
+        self.data=None
+        self.next=None
+
+    def setData(self,data):
+        self.data=data
+
+    def getData(self):
+        return self.data
+
+    def setNext(self,next):
+        self.next= next
+
+    def getNext(self):
+        return self.next
+
+    def hasNext(self):
+        return self.next!=None
+
+
+class Stack(object):
+
+    def __init__(self, data=None):
+        self.head=None
+        if data:
+            for data in data:
+                self.push(data)
+
+    def push(self, data):
+        temp=Node()
+        temp.setData(data)
+        temp.setNext(self.head)
+        self.head=temp
+
+    def pop(self):
+        if self.head is None:
+            raise IndexError
+        temp=self.head.getData()
+        self.head=self.head.getNext()
+        return temp
+
+    def peek(self):
+        if self.head is None:
+            raise IndexError
+        return self.head.getData()
+
+    def GetValue(self):
+        Node()
+        listValue = []
+        current = self.head
+        while current.getNext() != None:
+            listValue.append(current.getData())
+            current = current.getNext()
+        listValue.append(current.getData())
+        return listValue
+
+our_list = ['first','second','third','fourth']
+our_stack = Stack(our_list)
+print(our_stack.pop())
+print(our_stack.pop())
+print(our_stack.pop())
+print(our_stack.GetValue())
